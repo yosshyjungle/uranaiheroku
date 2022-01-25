@@ -63,27 +63,35 @@
          </div><!-- /.container-fluid -->
        </nav>
        <div class="blurred-container">
-           <div class="img-src" style="background-image: url({{ picture }}.png)"></div>
+         <div class="motto">
+             <div>相性診断</div>
+             <p></p>
+             <p>あなたと気になるあの人占ってみましょう</p>
+             <!-- <div class="border no-right-border">診</div><div class="border">断</div> -->
+         </div>
+           <div class="img-src" style="background-image: url('static/img/title_p.png')"></div>
           <!-- <div class="img-src" style="background-image: url('assets/img/cover_4.jpg')"></div> -->
-          <div class='img-src blur' style="background-image: url({{ picture }}_blur.png)"></div>
+          <div class='img-src blur' style="background-image: url('static/img/title_p_blur.png')"></div>
        </div>
    </div><!--  end navbar -->
 </div> <!-- end menu-dropdown -->
 <div class="main">
     <div class="container tim-container" style="max-width:800px; padding-top:5px">
-		<h2>結果が出ました</h2>
-	<!--    <p>年齢:{{ age }}歳</p>-->
-	    <h1>あなたは{{ yourType }}タイプです</h1>
+		<h3>結果が出ました</h3>
+
+	    <h3>あなたは{{ yourType }}タイプです</h3>
 
 <!--	    <p><img src="{{ picture }}" alt="" class="img-fluid"></p>-->
 
-	    <<h1>相性を知りたい方は{{ p_Type }}タイプです</h1>
-        <h2>【相性診断】</h2>
+	    <h3>相性を知りたい方は{{ p_Type }}タイプです</h3>
+        <h3>【相性診断】</h3>
+        <h3>相性度は{{ p_suchi }}</h3>
+
 	    <p>{{ p_kekka }}</p>
 
 
         <br><br>
-      <button class="btn btn-primary btn-lg" style="width:30%">
+      <button class="btn btn-primary btn-lg" style="width:50%">
           <a href='/'>戻る</a>
       </button>
     </div>

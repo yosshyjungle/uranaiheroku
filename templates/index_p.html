@@ -69,9 +69,9 @@
              <p>あなたと気になるあの人占ってみましょう</p>
              <!-- <div class="border no-right-border">診</div><div class="border">断</div> -->
          </div>
-           <div class="img-src" style="background-image: url('static/img/title.png')"></div>
+           <div class="img-src" style="background-image: url('static/img/title_p.png')"></div>
           <!-- <div class="img-src" style="background-image: url('assets/img/cover_4.jpg')"></div> -->
-          <div class='img-src blur' style="background-image: url('static/img/title_blur.png')"></div>
+          <div class='img-src blur' style="background-image: url('static/img/title_p_blur.png')"></div>
        </div>
    </div><!--  end navbar -->
 </div> <!-- end menu-dropdown -->
@@ -80,37 +80,55 @@
     <div class="container tim-container" style="max-width:800px; padding-top:5px">
         <h3>相性診断</h3>
         <div class="row">
-        <form method="POST" enctype="multipart/form-data" action="/partner">
-            <div class="col-sm-6">
+
+            <div class="col-sm-10">
               <h4>●あなたの生まれた年を西暦で入力してください。</h4>
               <p>(1974年 → 1974)</p>
-                <input type="text" name="years">　年<br><br>
+                <form method="POST" enctype="multipart/form-data" action="/partner">
+                <div class="form-group">
+                    <input type="text" name="years">　年
+                </div>
               <h4>●あなたの生まれた月を入力してください。</h4>
               <p>(4月 → 4)</p>
-                <input type="text" name="months">　月<br>
+                <div class="form-group">
+                    <input type="text" name="months">　月
+                </div>
               <h4>●あなたの生まれた日を入力してください。</h4>
               <p>(2日 → 2)</p>
-                <input type="text" name="days">　日<br><br>
-            </div>
-            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" name="days">　日
+                </div>
+                    <hr>
+<!--            <div class="col-sm-6">-->
               <h4>●相性を知りたい方の生まれた年を西暦で入力してください。</h4>
               <p>(1975年 → 1975)</p>
-                <input type="text" name="p_years">　年<br><br>
+                <div class="form-group">
+                    <input type="text" name="p_years">　年
+                </div>
               <h4>●相性を知りたい方の生まれた月を入力してください。</h4>
               <p>(7月 → 7)</p>
-                <input type="text" name="p_months">　月<br>
+                <div class="form-group">
+                    <input type="text" name="p_months">　月
+                </div>
               <h4>●相性を知りたい方の生まれた日を入力してください。</h4>
-              <p>(9日 → 9)</p><input type="text" name="p_days">　日<br><br>
-            </div>
-            <div class="col-sm-12">
-                <input type="submit" value="相性診断" class="btn btn-primary btn-lg" style="width:30%">
-            </div>
+              <p>(9日 → 9)</p>
+               <div class="form-group">
+                <input type="text" name="p_days">　日
+               </div>
+
+
+                <input type="submit" value="相性診断" class="btn btn-primary btn-lg" style="width:50%">
+                    <hr>
+                    <button class="btn btn-primary btn-lg" style="width:50%">
+                        <a href='/'>戻る</a>
+                    </button>
+
 
         </form>
     </div>
 
 </div>
-    <hr>
+
         <div class="space"></div>
 <!-- end container -->
 </div>
