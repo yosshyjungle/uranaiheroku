@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/index_p',methods=['GET', 'POST'])
+def index_p():
+    return render_template('index_p.html')
+
 @app.route('/result', methods=['POST'])
 def result():
     global yourType
