@@ -1717,575 +1717,711 @@ def result():
                            unsei2022 = unsei2022)
 
 
-# #パートナー診断
-# @app.route('/partner', methods=['POST'])
-# def partner():
-#     global p_years
-#     global p_months
-#     global p_days
-#     p_years = request.form.get('p_years')
-#     p_months = request.form.get('p_months')
-#     p_days = request.form.get('p_days')
-#     # パートナーのデータ読み込み
-#
-#     p_months = int(p_months)
-#     p_days = int(p_days)
-#     p_df = pd.read_csv(f'data/{p_years}.csv')
-#     p_meisu = p_df.iloc[p_days - 1, p_months]
-#     p_meisu = p_meisu.replace('-', '')
-#     p_years = int(p_years)
-#     current = datetime.now()
-#     current_year = current.year
-#     current_year = int(current_year)
-#     if (p_years % 2) == 0:
-#         p_even_odd = '金'
-#     else:
-#         p_even_odd = '銀'
-#     p_years = int(p_years)
-#     p_age = current_year - p_years
-#     global p_yourType
-#     global p_Type
-#     # 壮年期（命数３を採用）
-#     if p_age > 60:
-#         if p_meisu[0:2] < '11':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の羅針盤タイプです。')
-#             p_yourType = f'{p_even_odd}の羅針盤{p_meisu[0:2]}'
-#
-#         elif p_meisu[0:2] < '21':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のインディアンタイプです')
-#             p_yourType = f'{p_even_odd}のインディアン{p_meisu[0:2]}'
-#
-#         elif p_meisu[0:2] < '31':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の鳳凰タイプです')
-#             p_yourType = f'{p_even_odd}の鳳凰{p_meisu[0:2]}'
-#
-#         elif p_meisu[0:2] < '41':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の時計タイプです')
-#             p_yourType = f'{p_even_odd}の時計{p_meisu[0:2]}'
-#
-#         elif p_meisu[0:2] < '51':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のカメレオンタイプです')
-#             p_yourType = f'{p_even_odd}のカメレオン{p_meisu[0:2]}'
-#
-#         elif p_meisu[0:2] < '61':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のイルカタイプです')
-#             p_yourType = f'{p_even_odd}のイルカ{p_meisu[0:2]}'
-#         else:
-#             st.write('その他')
-#
-#     # 青年期（命数２を採用）
-#     elif p_age > 30:
-#         if p_meisu[2:4] < '11':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の羅針盤タイプです。')
-#             p_yourType = f'{p_even_odd}の羅針盤{p_meisu[2:4]}'
-#
-#         elif p_meisu[2:4] < '21':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のインディアンタイプです')
-#             p_yourType = f'{p_even_odd}のインディアン{p_meisu[2:4]}'
-#
-#         elif p_meisu[2:4] < '31':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の鳳凰タイプです')
-#             p_yourType = f'{p_even_odd}の鳳凰{p_meisu[2:4]}'
-#
-#         elif p_meisu[2:4] < '41':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の時計タイプです')
-#             p_yourType = f'{p_even_odd}の時計{p_meisu[2:4]}'
-#
-#         elif p_meisu[2:4] < '51':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のカメレオンタイプです')
-#             p_yourType = f'{p_even_odd}のカメレオン{p_meisu[2:4]}'
-#
-#         elif p_meisu[2:4] < '61':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のイルカタイプです')
-#             p_yourType = f'{p_even_odd}のイルカ{p_meisu[2:4]}'
-#         else:
-#             st.write('その他')
-#
-#     # 幼年期（命数１を採用）
-#     elif p_age > 0:
-#         if p_meisu[4:6] < '11':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の羅針盤タイプです。')
-#             p_yourType = f'{p_even_odd}の羅針盤{p_meisu[4:6]}'
-#
-#         elif p_meisu[4:6] < '21':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のインディアンタイプです')
-#             p_yourType = f'{p_even_odd}のインディアン{p_meisu[4:6]}'
-#
-#         elif p_meisu[4:6] < '31':
-#             st.subheader('相性を知りたい方は{p_even_odd}の鳳凰タイプです')
-#             p_yourType = f'{p_even_odd}の鳳凰{p_meisu[4:6]}'
-#
-#         elif p_meisu[4:6] < '41':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}の時計タイプです')
-#             p_yourType = f'{p_even_odd}の時計{p_meisu[4:6]}'
-#
-#         elif p_meisu[4:6] < '51':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のカメレオンタイプです')
-#             p_yourType = f'{p_even_odd}のカメレオン{p_meisu[4:6]}'
-#
-#         elif p_meisu[4:6] < '61':
-#             st.subheader(f'相性を知りたい方は{p_even_odd}のイルカタイプです')
-#             p_yourType = f'{p_even_odd}のイルカ{p_meisu[4:6]}'
-#         else:
-#             st.write('その他')
-#     else:
-#         pass
-#
-#     p_Type = p_yourType[0:-2]
-#
-#
-#     if yourType[0:-2] == '金の羅針盤':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#
-#     elif yourType[0:-2] == '銀の羅針盤':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '金のインディアン':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '銀のインディアン':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '金の鳳凰':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '銀の鳳凰':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '金の時計':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '銀の時計':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '金のカメレオン':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '銀のカメレオン':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '金のイルカ':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     elif yourType[0:-2] == '銀のイルカ':
-#         if p_Type == '金の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の羅針盤':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のインディアン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の鳳凰':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀の時計':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のカメレオン':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '金のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#         elif p_Type == '銀のイルカ':
-#             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
-#                 p_kekka = f.read()
-#     else:
-#         pass
-#
-#     return render_template('partner.html',
-#                            yourType=yourType[0:-2],
-#                            p_Type = p_Type,
-#                            p_kekka = p_kekka)
+#パートナー診断
+@app.route('/partner', methods=['POST'])
+def partner():
+    global yourType
+    years = request.form.get('years')
+    months = request.form.get('months')
+    days = request.form.get('days')
+    # return render_template('result.html')
+
+    years = int(years)
+    df = pd.read_csv(f'data/{years}.csv')
+    days = int(days)
+    months = int(months)
+    meisu = df.iloc[days - 1, months]
+    meisu = meisu.replace('-', '')
+
+    current = datetime.now()
+    current_year = current.year
+    current_year = int(current_year)
+
+    if (years % 2) == 0:
+        even_odd = '金'
+    else:
+        even_odd = '銀'
+    years = int(years)
+    age = current_year - years
+    # global yourType
+    # 壮年期（命数３を採用）
+    if age > 60:
+        if meisu[0:2] < '11':
+            print(f'あなたは{even_odd}の羅針盤タイプです。')
+            yourType = f'{even_odd}の羅針盤{meisu[0:2]}'
+
+        elif meisu[0:2] < '21':
+            print(f'あなたは{even_odd}のインディアンタイプです')
+            yourType = f'{even_odd}のインディアン{meisu[0:2]}'
+
+        elif meisu[0:2] < '31':
+            print(f'あなたは{even_odd}の鳳凰タイプです')
+            yourType = f'{even_odd}の鳳凰{meisu[0:2]}'
+
+        elif meisu[0:2] < '41':
+            print(f'あなたは{even_odd}の時計タイプです')
+            yourType = f'{even_odd}の時計{meisu[0:2]}'
+
+        elif meisu[0:2] < '51':
+            print(f'あなたは{even_odd}のカメレオンタイプです')
+            yourType = f'{even_odd}のカメレオン{meisu[0:2]}'
+
+        elif meisu[0:2] < '61':
+            print(f'あなたは{even_odd}のイルカタイプです')
+            yourType = f'{even_odd}のイルカ{meisu[0:2]}'
+        else:
+            print('その他')
+
+
+    # 青年期（命数２を採用）
+    elif age > 30:
+        if meisu[2:4] < '11':
+            print(f'あなたは{even_odd}の羅針盤タイプです。')
+            yourType = f'{even_odd}の羅針盤{meisu[2:4]}'
+
+        elif meisu[2:4] < '21':
+            print(f'あなたは{even_odd}のインディアンタイプです')
+            yourType = f'{even_odd}のインディアン{meisu[2:4]}'
+
+        elif meisu[2:4] < '31':
+            print(f'あなたは{even_odd}の鳳凰タイプです')
+            yourType = f'{even_odd}の鳳凰{meisu[2:4]}'
+
+        elif meisu[2:4] < '41':
+            print(f'あなたは{even_odd}の時計タイプです')
+            yourType = f'{even_odd}の時計{meisu[2:4]}'
+
+        elif meisu[2:4] < '51':
+            print(f'あなたは{even_odd}のカメレオンタイプです')
+            yourType = f'{even_odd}のカメレオン{meisu[2:4]}'
+
+        elif meisu[2:4] < '61':
+            print(f'あなたは{even_odd}のイルカタイプです')
+            yourType = f'{even_odd}のイルカ{meisu[2:4]}'
+        else:
+            print('その他')
+
+    # 幼年期（命数１を採用）
+    elif age > 0:
+        if meisu[4:6] < '11':
+            print(f'あなたは{even_odd}の羅針盤タイプです。')
+            yourType = f'{even_odd}の羅針盤{meisu[4:6]}'
+
+        elif meisu[4:6] < '21':
+            print(f'あなたは{even_odd}のインディアンタイプです')
+            yourType = f'{even_odd}のインディアン{meisu[4:6]}'
+
+        elif meisu[4:6] < '31':
+            print(f'あなたは{even_odd}の鳳凰タイプです')
+            yourType = f'{even_odd}の鳳凰{meisu[4:6]}'
+
+        elif meisu[4:6] < '41':
+            print(f'あなたは{even_odd}の時計タイプです')
+            yourType = f'{even_odd}の時計{meisu[4:6]}'
+
+        elif meisu[4:6] < '51':
+            print(f'あなたは{even_odd}のカメレオンタイプです')
+            yourType = f'{even_odd}のカメレオン{meisu[4:6]}'
+
+        elif meisu[4:6] < '61':
+            print(f'あなたは{even_odd}のイルカタイプです')
+            yourType = f'{even_odd}のイルカ{meisu[4:6]}'
+        else:
+            print('その他')
+    else:
+        pass
+
+    global p_years
+    global p_months
+    global p_days
+    p_years = request.form.get('p_years')
+    p_months = request.form.get('p_months')
+    p_days = request.form.get('p_days')
+    # パートナーのデータ読み込み
+
+    p_months = int(p_months)
+    p_days = int(p_days)
+    p_df = pd.read_csv(f'data/{p_years}.csv')
+    p_meisu = p_df.iloc[p_days - 1, p_months]
+    p_meisu = p_meisu.replace('-', '')
+    p_years = int(p_years)
+    current = datetime.now()
+    current_year = current.year
+    current_year = int(current_year)
+    if (p_years % 2) == 0:
+        p_even_odd = '金'
+    else:
+        p_even_odd = '銀'
+    p_years = int(p_years)
+    p_age = current_year - p_years
+    global p_yourType
+    global p_Type
+    # 壮年期（命数３を採用）
+    if p_age > 60:
+        if p_meisu[0:2] < '11':
+
+            p_yourType = f'{p_even_odd}の羅針盤{p_meisu[0:2]}'
+
+        elif p_meisu[0:2] < '21':
+
+            p_yourType = f'{p_even_odd}のインディアン{p_meisu[0:2]}'
+
+        elif p_meisu[0:2] < '31':
+
+            p_yourType = f'{p_even_odd}の鳳凰{p_meisu[0:2]}'
+
+        elif p_meisu[0:2] < '41':
+
+            p_yourType = f'{p_even_odd}の時計{p_meisu[0:2]}'
+
+        elif p_meisu[0:2] < '51':
+
+            p_yourType = f'{p_even_odd}のカメレオン{p_meisu[0:2]}'
+
+        elif p_meisu[0:2] < '61':
+
+            p_yourType = f'{p_even_odd}のイルカ{p_meisu[0:2]}'
+        else:
+            pass
+
+    # 青年期（命数２を採用）
+    elif p_age > 30:
+        if p_meisu[2:4] < '11':
+
+            p_yourType = f'{p_even_odd}の羅針盤{p_meisu[2:4]}'
+
+        elif p_meisu[2:4] < '21':
+
+            p_yourType = f'{p_even_odd}のインディアン{p_meisu[2:4]}'
+
+        elif p_meisu[2:4] < '31':
+
+            p_yourType = f'{p_even_odd}の鳳凰{p_meisu[2:4]}'
+
+        elif p_meisu[2:4] < '41':
+
+            p_yourType = f'{p_even_odd}の時計{p_meisu[2:4]}'
+
+        elif p_meisu[2:4] < '51':
+
+            p_yourType = f'{p_even_odd}のカメレオン{p_meisu[2:4]}'
+
+        elif p_meisu[2:4] < '61':
+
+            p_yourType = f'{p_even_odd}のイルカ{p_meisu[2:4]}'
+        else:
+            pass
+
+    # 幼年期（命数１を採用）
+    elif p_age > 0:
+        if p_meisu[4:6] < '11':
+
+            p_yourType = f'{p_even_odd}の羅針盤{p_meisu[4:6]}'
+
+        elif p_meisu[4:6] < '21':
+
+            p_yourType = f'{p_even_odd}のインディアン{p_meisu[4:6]}'
+
+        elif p_meisu[4:6] < '31':
+
+            p_yourType = f'{p_even_odd}の鳳凰{p_meisu[4:6]}'
+
+        elif p_meisu[4:6] < '41':
+
+            p_yourType = f'{p_even_odd}の時計{p_meisu[4:6]}'
+
+        elif p_meisu[4:6] < '51':
+
+            p_yourType = f'{p_even_odd}のカメレオン{p_meisu[4:6]}'
+
+        elif p_meisu[4:6] < '61':
+
+            p_yourType = f'{p_even_odd}のイルカ{p_meisu[4:6]}'
+        else:
+            pass
+    else:
+        pass
+
+    p_Type = p_yourType[0:-2]
+
+
+    if yourType[0:-2] == '金の羅針盤':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
+                p_suchi = f.read()
+
+    elif yourType[0:-2] == '銀の羅針盤':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '金のインディアン':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '銀のインディアン':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '金の鳳凰':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '銀の鳳凰':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '金の時計':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '銀の時計':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '金のカメレオン':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '銀のカメレオン':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '金のイルカ':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    elif yourType[0:-2] == '銀のイルカ':
+        if p_Type == '金の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の羅針盤':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のインディアン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の鳳凰':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀の時計':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のカメレオン':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '金のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+        elif p_Type == '銀のイルカ':
+            with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
+                p_kekka = f.read()
+    else:
+        pass
+
+    return render_template('partner.html',
+                           yourType=yourType[0:-2],
+                           p_Type = p_Type,
+                           p_suchi = p_suchi,
+                           p_kekka = p_kekka)
 
 if __name__ == '__main__':
     app.run()
