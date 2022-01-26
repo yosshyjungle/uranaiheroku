@@ -76,15 +76,17 @@
    </div><!--  end navbar -->
 </div> <!-- end menu-dropdown -->
 <div class="main">
-    <div class="container tim-container" style="max-width:800px; padding-top:5px">
+    <div class="container tim-container" style="max-width:800px; padding-top:5px;">
+<!--        <div style="background-image: url({{ picture }}.png);background-position:0px,0px;opacity:0.4;"></div>-->
 		<h3>結果が出ました</h3>
 
-	    <h3>あなたは{{ yourType }}タイプです</h3>
+	    <h4>あなたは<br>【{{ yourType }}】タイプです</h4>
+<!--        <div style="position:relative">-->
+<!--	    <p style="position:absolute;top:-10px;left:-10px;"><img src="{{ picture }}.png" alt="" class="img-fluid" style="width:80%;opacity:0.5;"></p>-->
+<!--            </div>-->
 
-<!--	    <p><img src="{{ picture }}" alt="" class="img-fluid"></p>-->
-
-	    <h3>相性を知りたい方は{{ p_Type }}タイプです</h3>
-        <h3>【相性診断】</h3>
+	    <h4>相性を知りたい方は<br>【{{ p_Type }}】タイプです</h4>
+        <h4>相性診断</h4>
         <h3>相性度は{{ p_suchi }}</h3>
 
 	    <p>{{ p_kekka }}</p>
