@@ -87,8 +87,12 @@
 
 	    <h4>相性を知りたい方は<br>【{{ p_Type }}】タイプです</h4>
         <h4>相性診断</h4>
-        <h3>相性度は{{ p_suchi }}</h3>
-
+        <h3>相性度は{{ p_suchi }}%</h3>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="{{ p_suchi }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ p_suchi }}%;">
+            <span class="sr-only">{{ p_suchi }}% Complete</span>
+          </div>
+        </div>
 	    <p>{{ p_kekka }}</p>
 
 

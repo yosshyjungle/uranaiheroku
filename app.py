@@ -1749,26 +1749,32 @@ def partner():
         if meisu[0:2] < '11':
             print(f'あなたは{even_odd}の羅針盤タイプです。')
             yourType = f'{even_odd}の羅針盤{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[0:2] < '21':
             print(f'あなたは{even_odd}のインディアンタイプです')
             yourType = f'{even_odd}のインディアン{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[0:2] < '31':
             print(f'あなたは{even_odd}の鳳凰タイプです')
             yourType = f'{even_odd}の鳳凰{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[0:2] < '41':
             print(f'あなたは{even_odd}の時計タイプです')
             yourType = f'{even_odd}の時計{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[0:2] < '51':
             print(f'あなたは{even_odd}のカメレオンタイプです')
             yourType = f'{even_odd}のカメレオン{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[0:2] < '61':
             print(f'あなたは{even_odd}のイルカタイプです')
             yourType = f'{even_odd}のイルカ{meisu[0:2]}'
+            img_path = f'static/img/{yourType[0:-2]}'
         else:
             print('その他')
 
@@ -1778,26 +1784,32 @@ def partner():
         if meisu[2:4] < '11':
             print(f'あなたは{even_odd}の羅針盤タイプです。')
             yourType = f'{even_odd}の羅針盤{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[2:4] < '21':
             print(f'あなたは{even_odd}のインディアンタイプです')
             yourType = f'{even_odd}のインディアン{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[2:4] < '31':
             print(f'あなたは{even_odd}の鳳凰タイプです')
             yourType = f'{even_odd}の鳳凰{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[2:4] < '41':
             print(f'あなたは{even_odd}の時計タイプです')
             yourType = f'{even_odd}の時計{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[2:4] < '51':
             print(f'あなたは{even_odd}のカメレオンタイプです')
             yourType = f'{even_odd}のカメレオン{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[2:4] < '61':
             print(f'あなたは{even_odd}のイルカタイプです')
             yourType = f'{even_odd}のイルカ{meisu[2:4]}'
+            img_path = f'static/img/{yourType[0:-2]}'
         else:
             print('その他')
 
@@ -1806,26 +1818,32 @@ def partner():
         if meisu[4:6] < '11':
             print(f'あなたは{even_odd}の羅針盤タイプです。')
             yourType = f'{even_odd}の羅針盤{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[4:6] < '21':
             print(f'あなたは{even_odd}のインディアンタイプです')
             yourType = f'{even_odd}のインディアン{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[4:6] < '31':
             print(f'あなたは{even_odd}の鳳凰タイプです')
             yourType = f'{even_odd}の鳳凰{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[4:6] < '41':
             print(f'あなたは{even_odd}の時計タイプです')
             yourType = f'{even_odd}の時計{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[4:6] < '51':
             print(f'あなたは{even_odd}のカメレオンタイプです')
             yourType = f'{even_odd}のカメレオン{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
 
         elif meisu[4:6] < '61':
             print(f'あなたは{even_odd}のイルカタイプです')
             yourType = f'{even_odd}のイルカ{meisu[4:6]}'
+            img_path = f'static/img/{yourType[0:-2]}'
         else:
             print('その他')
     else:
@@ -1951,61 +1969,73 @@ def partner():
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀の羅針盤':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '金のインディアン':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀のインディアン':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '金の鳳凰':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀の鳳凰':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '金の時計':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀の時計':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '金のカメレオン':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀のカメレオン':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '金のイルカ':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
         elif p_Type == '銀のイルカ':
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}.txt', 'r', encoding='utf-8') as f:
                 p_kekka = f.read()
             with open(f'p_Type/{yourType[0:-2]}/{p_Type}suchi.txt', 'r', encoding='utf-8') as f:
                 p_suchi = f.read()
+                # p_suchi = p_suchi.replace('%', '')
 
     elif yourType[0:-2] == '銀の羅針盤':
         if p_Type == '金の羅針盤':
@@ -2684,7 +2714,8 @@ def partner():
                            yourType=yourType[0:-2],
                            p_Type = p_Type,
                            p_suchi = p_suchi,
-                           p_kekka = p_kekka)
+                           p_kekka = p_kekka,
+                           picture = img_path)
 
 if __name__ == '__main__':
     app.run()
