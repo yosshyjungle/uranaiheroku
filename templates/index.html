@@ -79,18 +79,21 @@
 
 <div class="main">
     <div class="container tim-container" style="max-width:800px; padding-top:5px">
+        <h5>AI占いのサイトへようこそ。こちらのサイトでは、生年月日を入力することで、タイプ別に占うことができます。<br>
+        相性診断では気になる人との相性診断もできます。占いの結果はゲッターズ飯田さんの五星三心占いを参照しています。</h5>
+        <hr>
         <form method="POST" enctype="multipart/form-data" action="/result">
-              <h3>あなたの生まれた年を西暦で入力してください。</h3>
+              <h3 class="title">あなたの生まれた年を西暦で入力してください。</h3>
               <p>(1974年 → 1974)</p>
               <div class="form-group">
                 <input type="text" name="years">　年
               </div>
-              <h3>あなたの生まれた月を入力してください。</h3>
+              <h3 class="title">あなたの生まれた月を入力してください。</h3>
               <p>(4月 → 4)</p>
               <div class="form-group">
                 <input type="text" name="months">　月
               </div>
-              <h3>あなたの生まれた日を入力してください。</h3>
+              <h3 class="title">あなたの生まれた日を入力してください。</h3>
               <p>(2日 → 2)</p>
               <div class="form-group">
                 <input type="text" name="days">　日

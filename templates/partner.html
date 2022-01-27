@@ -78,7 +78,7 @@
 <div class="main">
     <div class="container tim-container" style="max-width:800px; padding-top:5px;">
 <!--        <div style="background-image: url({{ picture }}.png);background-position:0px,0px;opacity:0.4;"></div>-->
-		<h3>結果が出ました</h3>
+		<h3 class="title">結果が出ました</h3>
 
 	    <h4>あなたは</h4>
         <p><img src="{{ picture }}.png" class='img-rounded img-responsive'></p>
@@ -89,7 +89,7 @@
 	    <h4>相性を知りたい方は</h4>
         <p><img src="{{ p_picture }}.png" class='img-rounded img-responsive'></p>
         <h4>相性診断</h4>
-        <h3>相性度は{{ p_suchi }}%</h3>
+        <h3 class="title">相性度は{{ p_suchi }}%</h3>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="{{ p_suchi }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ p_suchi }}%;">
             <span class="sr-only">{{ p_suchi }}% Complete</span>
